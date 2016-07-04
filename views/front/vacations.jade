@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .container
+    .header
+      .search-wrapper
+        i.icon-search
+        input(type='search', placeholder='搜目的地')
+        button(type='submit') GO
+    .wrapper
+      .vacation-wrapper
+        each vacation in vacations
+          .vacation-item
+            a(href='/vacations/'+vacation._id)
+              .vacation-img
+                img(src= vacation.thumbnail)
+              .vacation-badge 
+                | ￥
+                =vacation.price
+                | 起
+              .vacation-info
+                h3= vacation.title
+                p= vacation.subtitle
+          //- .vacation-item
+          //-   a(href='vacation-detail.html')
+          //-     .vacation-img
+          //-       img(src='/img/p1.jpg')
+          //-     .vacation-badge ￥7399起
+          //-     .vacation-info
+          //-       h3 落日余晖相伴 逍遥享受人生
+          //-       p 『世界上最美的海滩』塞舌尔德瓦塔拉海滩酒店5天4晚套餐
+      .vacation-more 查看更多路线

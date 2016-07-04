@@ -1,0 +1,88 @@
+extends layout
+
+append css
+  link(rel="stylesheet", href="/components/summernote/dist/summernote.css")
+  link(rel="stylesheet", href="/admin/plugins/fileuploads/css/dropify.min.css")
+
+append js
+  script(src='/components/summernote/dist/summernote.min.js')
+  script(src="/admin/plugins/fileuploads/js/dropify.min.js")
+  script.
+    $(function(){
+    $('.summernote').summernote({
+    height: 200,
+    minHeight: null,
+    maxHeight: null,
+    focus: true
+    });
+
+    $('.dropify').dropify({
+    messages: {
+    'default': 'Drag and drop a file here or click',
+    'replace': 'Drag and drop or click to replace',
+    'remove': 'Remove',
+    'error': 'Ooops, something wrong appended.'
+    },
+    error: {
+    'fileSize': 'The file size is too big (1M max).'
+    }
+    });
+    })
+  //- script(src="/admin/js/form.js")
+
+block content
+  .container
+    .row
+      .col-sm-12
+        .card-box
+          h4.header-title.m-t-0.m-b-30= title
+          form.form-horizontal(role="form" name="fileinfo" method="post" action=action)
+            .form-group
+              label.col-md-2.control-label 主标题
+              .col-md-10
+                input.form-control(type="text" name="title" value=vacationContent.title placeholder="eg. 落日余晖相伴 逍遥享受人生")
+            .form-group
+              label.col-md-2.control-label 副标题
+              .col-md-10
+                input.form-control(type="text" name="subtitle" value=vacationContent.subtitle placeholder="eg. 塞舌尔德瓦塔拉海滩酒店5天4晚套餐")
+            .form-group
+              label.col-md-2.control-label 价格
+              .col-md-2
+                input.form-control(type="number" name="price" value=vacationContent.price placeholder="")
+              .col-md-2
+                p.form-control-static 元起
+            //- .form-group
+              label.col-md-2.control-label 封面图片
+              .col-md-4
+                input.dropify(type="file" data-default-file="http://www.bz55.com/uploads/allimg/150720/139-150H0110925.jpg" name="thumbnail" accept="image/*" data-height="180" data-max-file-size="1M")
+            //- .form-group
+              label.col-md-2.control-label 特色
+              .col-md-10
+                textarea.summernote.form-control(name="feature" value=vacationContent.feature)
+                  p ★精选航空：高端新加坡航空执飞
+                  p ★精选酒店：五钻海边康莱德酒店
+            //- .form-group
+              label.col-md-2.control-label 详情
+              .col-md-10
+                textarea.summernote.form-control(name="content" value=vacationContent.content)
+            //- .form-group
+              label.col-md-2.control-label 费用说明
+              .col-md-10
+                textarea.summernote.form-control(name="fee" value=vacationContent.fee)
+                  h3 费用包含
+                  p
+                    | 1.机 票：交通全程往返团队经济舱机票含税费（团队机票一经开出，不得更改、不得签转、不得退票，如根据航空公司或出境社规定，机票可签转、改期或退票，我司可协助处理）<br>
+                    | 2.酒 店：行程中所列酒店或同类别酒店双人标准间.
+                  h3 费用不包含
+                  p
+                    | 1.单房差：个人全程单房差现询.
+                    | 2.司导服务费：不含当地司机导游服务费 元/人，服务费请于境外现付.
+                    | 3.交通：出发地至集合地的交通等非行程安排的交通.
+            //- .form-group
+              label.col-md-2.control-label 预订须知
+              .col-md-10
+                textarea.summernote.form-control(name="notice" value=vacationContent.notice)
+            .form-group
+              .col-sm-offset-2.col-sm-8
+                button.btn.btn-primary.btn-lg.waves-effect.waves-light(type="submit") 确认
+                button.btn.btn-default.btn-lg.waves-effect.waves-light.m-l-5(type="reset") 取消

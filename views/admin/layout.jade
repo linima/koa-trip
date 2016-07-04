@@ -1,0 +1,188 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='shortcut icon', href='assets/images/favicon.ico')
+    title= title
+    block css
+      link(rel="stylesheet", href="/components/bootstrap/dist/css/bootstrap.min.css")
+      link(rel="stylesheet", href="/admin/css/core.css")
+      link(rel="stylesheet", href="/admin/css/components.css")
+      link(rel="stylesheet", href="/admin/css/menu.css")
+      link(rel="stylesheet", href="/components/font-awesome/css/font-awesome.min.css")
+      //- <link href="assets/css/components.css" rel="stylesheet" type="text/css"
+      //- <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+      //- <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+      //- <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+      //- <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+  body.fixed-left
+    // Begin page
+    #wrapper
+      // Top Bar Start
+      .topbar
+        // LOGO
+        .topbar-left
+          a.logo(href='index.html')
+            span
+              | Admin
+              span to
+            i.zmdi.zmdi-layers
+        .navbar.navbar-default(role='navigation')
+          .container
+            ul.nav.navbar-nav.navbar-left
+              li
+                button.button-menu-mobile.open-left
+                  i.zmdi.zmdi-menu
+              li
+                h4.page-title= title
+            ul.nav.navbar-nav.navbar-right
+              li
+                .notification-box
+                  ul.list-inline.m-b-0
+                    li
+                      a.right-bar-toggle(href='javascript:void(0);')
+                        i.zmdi.zmdi-notifications-none
+                      .noti-dot
+                        span.dot
+                        span.pulse
+              li.hidden-xs
+                form.app-search(role='search')
+                  input.form-control(type='text', placeholder='Search...')
+                  a(href='')
+                    i.fa.fa-search
+      // ========== Left Sidebar Start ==========
+      .left.side-menu
+        .sidebar-inner.slimscrollleft
+          // User
+          .user-box
+            .user-img
+              img.img-circle.img-thumbnail.img-responsive(src='http://coderthemes.com/adminto_1.3/light/assets/images/users/avatar-1.jpg', alt='', title='')
+              .user-status.offline
+                i.zmdi.zmdi-dot-circle
+            h5
+              a(href='#') administartor
+            ul.list-inline
+              li
+                a(href='#')
+                  i.fa.fa-cog
+              li
+                a.text-custom(href='#')
+                  i.fa.fa-sign-out
+          #sidebar-menu
+            ul
+              //- li.text-muted.menu-title Navigation
+              li
+                a.waves-effect(href='')
+                  i.fa.fa-tachometer
+                  span 控制面板
+              li.has_sub
+                a.waves-effect(href='javascript:void(0);')
+                  i.fa.fa-tree
+                  span 预订
+                  span.menu-arrow.fa.fa-angle-right
+                ul.list-unstyled
+                  li
+                    a(href='/admin/vacations') 预订列表
+                    a(href='/admin/vacations/add') 新增预订
+                    a(href='') 分类
+              li.has_sub
+                a.waves-effect(href='javascript:void(0);')
+                  i.fa.fa-tree
+                  span 周末游
+                  span.menu-arrow.fa.fa-angle-right
+                ul.list-unstyled
+                  li
+                    a(href='') 列表
+                    a(href='') 新增
+                    a(href='') 分类
+              li.has_sub
+                a.waves-effect(href='javascript:void(0);')
+                  i.fa.fa-tree
+                  span 订单
+                  span.menu-arrow.fa.fa-angle-right
+                ul.list-unstyled
+                  li
+                    a(href='') 查看订单
+                    a(href='') 订单导出
+              li.has_sub
+                a.waves-effect(href='javascript:void(0);')
+                  i.fa.fa-tree
+                  span 会员
+                  span.menu-arrow.fa.fa-angle-right
+                ul.list-unstyled
+                  li
+                    a(href='') 会员列表
+                    a(href='') 新增会员
+                    a(href='') 会员等级
+                    a(href='') 会员权限
+      .content-page
+        .content
+          block content
+        footer.footer
+          | 2016 © Adminto.
+      // ==============================================================
+      // Right Sidebar
+      .side-bar.right-bar
+        a.right-bar-toggle(href='javascript:void(0);')
+          i.zmdi.zmdi-close-circle-o
+        h4 Notifications
+        .notification-list.nicescroll
+          ul.list-group.list-no-border.user-list
+            li.list-group-item
+              a.user-list-item(href='#')
+                .avatar
+                  img(src='http://coderthemes.com/adminto_1.3/light/assets/images/users/avatar-1.jpg', alt='')
+                .user-desc
+                  span.name Michael Zenaty
+                  span.desc There are new settings available
+                  span.time 2 hours ago
+            li.list-group-item
+              a.user-list-item(href='#')
+                .icon.bg-info
+                  i.zmdi.zmdi-account
+                .user-desc
+                  span.name New Signup
+                  span.desc There are new settings available
+                  span.time 5 hours ago
+            li.list-group-item
+              a.user-list-item(href='#')
+                .icon.bg-pink
+                  i.zmdi.zmdi-comment
+                .user-desc
+                  span.name New Message received
+                  span.desc There are new settings available
+                  span.time 1 day ago
+            li.list-group-item.active
+              a.user-list-item(href='#')
+                .avatar
+                  img(src='http://coderthemes.com/adminto_1.3/light/assets/images/users/avatar-1.jpg', alt='')
+                .user-desc
+                  span.name James Anderson
+                  span.desc There are new settings available
+                  span.time 2 days ago
+            li.list-group-item.active
+              a.user-list-item(href='#')
+                .icon.bg-warning
+                  i.zmdi.zmdi-settings
+                .user-desc
+                  span.name Settings
+                  span.desc There are new settings available
+                  span.time 1 day ago
+
+      script.
+        var resizefunc = [];
+      script(src='/components/jquery/dist/jquery.min.js')
+      script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+      script(src='/admin/js/detect.js')
+      script(src='/admin/js/fastclick.js')
+      script(src='/admin/js/jquery.slimscroll.js')
+      script(src='/admin/js/jquery.blockUI.js')
+      script(src='/admin/js/waves.js')
+      script(src='/admin/js/jquery.nicescroll.js')
+      script(src='/admin/js/jquery.scrollTo.min.js')
+
+      script(src='/admin/js/jquery.app.js')
+      script(src='/admin/js/jquery.core.js')
+
+      block js

@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-smlg-12
+        div.card-box
+          h4.header-title.m-t-0.m-b-30= title
+          table.table.m-0
+            thead
+              tr
+                th #ID
+                th 图片/Image
+                th 标题/Title
+                th 价格/Price
+                th 日期/Data
+                th 操作/Actions
+            tbody
+              each vacation in vacations
+                tr
+                  th(scope="row")= $index+1
+                  td
+                    img(src= vacation.thumbnail, height='45')
+                  td
+                    div= vacation.title
+                    small.text-muted= vacation.subtitle
+                  td 
+                    | ￥
+                    = vacation.price
+                    |  起
+                  td 2016/06/12 06:23:16
+                  td
+                    a.btn.btn-icon.btn-info.waves-effect.waves-light(href='/admin/vacations/edit/'+ vacation.id)
+                      i.fa.fa-pencil
+                    a.btn.btn-icon.btn-danger.waves-effect.waves-light.m-l-5(href='/admin/vacations/del/'+ vacation.id)
+                      i.fa.fa-remove

@@ -1,0 +1,105 @@
+extends layout
+
+block content
+  .container
+    .header.transparent
+      a.back(href='')
+        i.icon-back
+      .title
+        = vacationContent.title 
+        | - 
+        = vacationContent.subtitle
+      a.share(href='')
+        i.icon-share
+    .wrapper
+      .vacation-detail
+        .vacation-pro
+          .vacation-img
+            img(src= vacationContent.thumbnail)
+          .vacation-badge 
+            | ￥
+            =vacationContent.price
+            | 起
+          .vacation-info
+            h3= vacationContent.title
+            p= vacationContent.subtitle
+        .vacation-feature!= vacationContent.feature
+        .vacation-content
+          ul.tab
+            li.active(rel='intro') 产品详情
+            li(rel='fee') 费用说明
+            li(rel='notice') 预订须知
+            b.tab-scrollbar
+          .content
+            #intro.panel
+              h3.hd 产品详情
+              .bd!= vacationContent.content
+            #fee.panel
+              h3.hd 费用说明
+              .bd
+                .fee!= vacationContent.fee
+            #notice.panel
+              h3.hd 预订须知
+              .bd!= vacationContent.notice
+      a.bottom-btn(href='') 立即预订
+  script.
+    var tab = document.getElementsByClassName('tab')[0];
+    var li = tab.getElementsByTagName('li');
+    var tabOffsetTop = tab.offsetTop;
+    var introTop = document.getElementById('intro').offsetTop;
+    var feeTop = document.getElementById('fee').offsetTop;
+    var noticeTop = document.getElementById('notice').offsetTop;
+    for(var i=0, len=li.length; i<len; i++){
+    li[i].addEventListener('click', function(e){
+    for(var j=0; j<len; j++){
+    li[j].className = '';
+    }
+    this.className = 'active';
+    var rel = this.getAttribute('rel');
+    switch (rel) {
+    case 'intro':
+    document.body.scrollTop = introTop - 87;
+    break;
+    case 'fee':
+    document.body.scrollTop = feeTop - 87;
+    break;
+    case 'notice':
+    document.body.scrollTop = noticeTop - 87;
+    break;
+    default:
+    // statements_def
+    break;
+    }
+    console.log(rel)
+    // var sTop = document.getElementById(rel).offsetTop;
+    // document.body.scrollTop = sTop-88;
+    // if(tab.className.indexOf('fixed') > 0){
+    // 	document.body.scrollTop = sTop-90;
+    // }else{
+    // 	document.body.scrollTop = sTop-45;
+    // }
+    })
+    }
+    window.addEventListener('scroll', function(e){
+    var scrollTop = window.scrollY;
+    var header = document.getElementsByClassName('header')[0];
+    if(scrollTop >= introTop){
+    li[0].classList.add('active');
+    }
+    if(scrollTop >= feeTop){
+    li[1].classList.add('active');
+    }
+    if(scrollTop >= noticeTop){
+    li[2].classList.add('active');
+    }
+    if(scrollTop > 5){
+    header.classList.remove('transparent');
+    }else{
+    header.classList.add('transparent');
+    }
+    if(scrollTop > tabOffsetTop-55){
+    tab.classList.add('fixed');
+    }else{
+    tab.classList.remove('fixed');
+    }
+    })
